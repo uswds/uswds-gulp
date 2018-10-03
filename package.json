@@ -1,0 +1,19 @@
+{
+  "name": "uswds-gulp",
+  "version": "0.0.1",
+  "description": "A gulp workflow for USWDS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uswds/uswds-gulp.git"
+  },
+  "author": "Dan O. Williams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uswds/uswds-gulp/issues"
+  },
+  "homepage": "https://github.com/uswds/uswds-gulp#readme"
+}
