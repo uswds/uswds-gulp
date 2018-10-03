@@ -92,8 +92,11 @@ gulp.task('copy-uswds-js', () => {
 
 gulp.task('build-sass', function (done) {
   var plugins = [
+    // Autoprefix
     autoprefixer(AUTOPREFIXER_OPTIONS),
+    // Pack media queries
     mqpacker({ sort: true }),
+    // Minify
     cssnano(({ autoprefixer: { browsers: AUTOPREFIXER_OPTIONS }}))
   ];
   return gulp.src([
