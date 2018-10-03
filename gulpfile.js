@@ -71,12 +71,6 @@ TASKS
 ----------------------------------------
 */
 
-gulp.task('copy-uswds-gulpfile', () => {
-  return gulp.src('gulpfile.js')
-  .pipe(rename('gulpfile-uswds.js'))
-  .pipe(gulp.dest('.'));
-});
-
 gulp.task('copy-uswds-setup', () => {
   return gulp.src(`${USWDS_SRC}/scss/theme/**/**`)
   .pipe(gulp.dest(`${PROJECT_SASS_SRC}`));
@@ -143,4 +137,4 @@ gulp.task('watch-sass', function () {
 
 gulp.task('watch', gulp.series('build-sass', 'watch-sass'));
 
-gulp.task('default', gulp.series('copy-uswds-gulpfile'));
+gulp.task('default', gulp.series('watch'));
