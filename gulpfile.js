@@ -13,7 +13,6 @@ USWDS SASS GULPFILE
 
 var autoprefixer  = require('autoprefixer');
 var cssnano       = require('cssnano');
-var del           = require('del');
 var gulp          = require('gulp');
 var mqpacker      = require('css-mqpacker');
 var notify        = require('gulp-notify');
@@ -70,12 +69,6 @@ const AUTOPREFIXER_OPTIONS = [
 TASKS
 ----------------------------------------
 */
-
-gulp.task('clean-css', function () {
-  return del([
-    `${CSS_DEST}/**/*`
-  ]);
-});
 
 gulp.task('copy-uswds-fonts', () => {
   return gulp.src(`${USWDS_SRC}/fonts/**/**`)
