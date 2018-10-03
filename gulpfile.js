@@ -130,7 +130,7 @@ gulp.task('init', gulp.series(
   'build-sass',
 ));
 
-gulp.task('watch', gulp.series('build-sass', function(){
+gulp.task('watch', gulp.series('build-sass', function watchSass(){
   gulp.watch(`${PROJECT_SASS_SRC}/**/*.scss`, gulp.series('build-sass'));
 }));
 
