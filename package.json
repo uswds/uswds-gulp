@@ -4,7 +4,9 @@
   "description": "A gulp workflow for USWDS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "init": "gulp init",
+    "watch": "gulp watch"
   },
   "repository": {
     "type": "git",
