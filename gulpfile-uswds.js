@@ -71,7 +71,7 @@ TASKS
 ----------------------------------------
 */
 
-gulp.task('copy-uswds-gulpfile', () => {
+gulp.task('copy-gulpfile', () => {
   return gulp.src('gulpfile.js')
   .pipe(rename('gulpfile-uswds.js'))
   .pipe(gulp.dest('.'));
@@ -143,4 +143,4 @@ gulp.task('watch-sass', function () {
 
 gulp.task('watch', gulp.series('build-sass', 'watch-sass'));
 
-gulp.task('default', gulp.series('copy-uswds-gulpfile'));
+gulp.task('default', gulp.series('watch'));
