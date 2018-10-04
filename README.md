@@ -1,4 +1,4 @@
-# USWDS Gulp pipeline for compiling Sass
+# USWDS Gulp pipeline for copying assets and compiling Sass
 A simple [Gulp 4.0](https://gulpjs.com/) workflow for transforming USWDS Sass into browser-readable CSS.
 
 ## Requirements
