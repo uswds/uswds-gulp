@@ -4,7 +4,7 @@ A simple [Gulp 4.0](https://gulpjs.com/)-based workflow for transforming USWDS S
 ## Requirements
 You'll need to be familiar with the command line.
 
-You'll need [node](https://nodejs.org/en/download/) and [npm](https://www.npmjs.com/get-npm). The installation instructions are linked here.
+You'll need [node](https://nodejs.org/en/download/) and [npm](https://www.npmjs.com/get-npm).
 
 You'll need to install the following packages via `npm`:
 - autoprefixer
@@ -22,7 +22,7 @@ You'll need to install the following packages via `npm`:
 - uswds-gulp@github:uswds/uswds-gulp
 
 ## Installation
-If you've never installed Gulp, you'll need to install the gulp command line interface:
+If you've never installed Gulp, you'll need to install the Gulp command line interface:
 
 ```
 npm install gulp-cli -g
@@ -78,3 +78,5 @@ gulp init
 ```
 gulp watch
 ```
+
+:rocket:
