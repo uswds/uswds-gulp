@@ -12,6 +12,7 @@ USWDS SASS GULPFILE
 */
 
 var autoprefixer  = require('autoprefixer');
+var autoprefixerOptions = require('./node_modules/uswds-gulp/config/browsers');
 var cssnano       = require('cssnano');
 var gulp          = require('gulp');
 var mqpacker      = require('css-mqpacker');
@@ -23,20 +24,18 @@ var rename        = require('gulp-rename');
 var replace       = require('gulp-replace');
 var sass          = require('gulp-sass');
 var sourcemaps    = require('gulp-sourcemaps');
+var uswds         = require('./node_modules/uswds-gulp/config/uswds');
 
 /*
 ----------------------------------------
-LOCATIONS
+PATHS
 ----------------------------------------
-- All locations are relative to the
+- All paths are relative to the
   project root
 - Don't use a trailing `/` for path
   names
 ----------------------------------------
 */
-
-// USWDS source directory
-const USWDS_SRC = 'node_modules/uswds/dist';
 
 // Project Sass source directory
 const PROJECT_SASS_SRC = './path/to/project/sass';
@@ -55,50 +54,38 @@ const CSS_DEST = './path/to/css/destination';
 
 /*
 ----------------------------------------
-SETTINGS
-----------------------------------------
-*/
-
-const AUTOPREFIXER_OPTIONS = [
-  '> 1%',
-  'Last 2 versions',
-  'IE 11',
-];
-
-/*
-----------------------------------------
 TASKS
 ----------------------------------------
 */
 
 gulp.task('copy-uswds-setup', () => {
-  return gulp.src(`${USWDS_SRC}/scss/theme/**/**`)
+  return gulp.src(`${uswds}/scss/theme/**/**`)
   .pipe(gulp.dest(`${PROJECT_SASS_SRC}`));
 });
 
 gulp.task('copy-uswds-fonts', () => {
-  return gulp.src(`${USWDS_SRC}/fonts/**/**`)
+  return gulp.src(`${uswds}/fonts/**/**`)
   .pipe(gulp.dest(`${FONTS_DEST}`));
 });
 
 gulp.task('copy-uswds-images', () => {
-  return gulp.src(`${USWDS_SRC}/js/**/**`)
+  return gulp.src(`${uswds}/js/**/**`)
   .pipe(gulp.dest(`${IMG_DEST}`));
 });
 
 gulp.task('copy-uswds-js', () => {
-  return gulp.src(`${USWDS_SRC}/img/**/**`)
+  return gulp.src(`${uswds}/img/**/**`)
   .pipe(gulp.dest(`${JS_DEST}`));
 });
 
-gulp.task('build-sass', function (done) {
+gulp.task('build-sass', function(done) {
   var plugins = [
     // Autoprefix
-    autoprefixer(AUTOPREFIXER_OPTIONS),
+    autoprefixer(autoprefixerOptions),
     // Pack media queries
     mqpacker({ sort: true }),
     // Minify
-    cssnano(({ autoprefixer: { browsers: AUTOPREFIXER_OPTIONS }}))
+    cssnano(({ autoprefixer: { browsers: autoprefixerOptions }}))
   ];
   return gulp.src([
       `${PROJECT_SASS_SRC}/*.scss`
@@ -111,8 +98,8 @@ gulp.task('build-sass', function (done) {
     .pipe(sass({
         includePaths: [
           `${PROJECT_SASS_SRC}`,
-          `${USWDS_SRC}/scss`,
-          `${USWDS_SRC}/scss/packages`,
+          `${uswds}/scss`,
+          `${uswds}/scss/packages`,
         ]
       }))
     .pipe(postcss(plugins))
