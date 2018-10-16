@@ -69,12 +69,12 @@ gulp.task('copy-uswds-fonts', () => {
 });
 
 gulp.task('copy-uswds-images', () => {
-  return gulp.src(`${uswds}/js/**/**`)
+  return gulp.src(`${uswds}/img/**/**`)
   .pipe(gulp.dest(`${IMG_DEST}`));
 });
 
 gulp.task('copy-uswds-js', () => {
-  return gulp.src(`${uswds}/img/**/**`)
+  return gulp.src(`${uswds}/js/**/**`)
   .pipe(gulp.dest(`${JS_DEST}`));
 });
 
