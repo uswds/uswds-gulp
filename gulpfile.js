@@ -100,7 +100,7 @@ gulp.task('build-sass', function(done) {
       }))
     .pipe(replace(
       /\buswds @version\b/g,
-      'uswds v' + pkg.version
+      'based on uswds v' + pkg.version
     ))
     .pipe(postcss(plugins))
     .pipe(sourcemaps.write('.'))
