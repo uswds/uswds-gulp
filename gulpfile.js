@@ -90,10 +90,6 @@ gulp.task('build-sass', function(done) {
   return gulp.src([
       `${PROJECT_SASS_SRC}/*.scss`
     ])
-    .pipe(replace(
-      /\buswds @version\b/g,
-      'uswds v' + pkg.version
-    ))
     .pipe(sourcemaps.init({ largeFile: true }))
     .pipe(sass({
         includePaths: [
@@ -102,9 +98,13 @@ gulp.task('build-sass', function(done) {
           `${uswds}/scss/packages`,
         ]
       }))
+    .pipe(replace(
+      /\buswds @version\b/g,
+      'based on uswds v' + pkg.version
+    ))
     .pipe(postcss(plugins))
-    .pipe(gulp.dest(`${CSS_DEST}`))
     .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest(`${CSS_DEST}`))
     .pipe(notify({
       "sound": "Pop" // case sensitive
     }));
