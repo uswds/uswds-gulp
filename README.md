@@ -18,7 +18,7 @@ You'll need to install the following packages via `npm`:
 - gulp-sass
 - gulp-sourcemaps
 - path
-- uswds@^2.0.0-beta
+- uswds@^2.0.0
 - uswds-gulp@github:uswds/uswds-gulp
 
 ## Installation
