@@ -16,7 +16,6 @@ var autoprefixerOptions = require('./node_modules/uswds-gulp/config/browsers');
 var cssnano       = require('cssnano');
 var gulp          = require('gulp');
 var mqpacker      = require('css-mqpacker');
-var notify        = require('gulp-notify');
 var path          = require('path');
 var pkg           = require('./node_modules/uswds/package.json');
 var postcss       = require('gulp-postcss');
@@ -104,10 +103,7 @@ gulp.task('build-sass', function(done) {
     ))
     .pipe(postcss(plugins))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(`${CSS_DEST}`))
-    .pipe(notify({
-      "sound": "Pop" // case sensitive
-    }));
+    .pipe(gulp.dest(`${CSS_DEST}`));
 });
 
 gulp.task('init', gulp.series(
