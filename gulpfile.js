@@ -51,6 +51,10 @@ const JS_DEST = './path/to/js/destination';
 // Compiled CSS destination
 const CSS_DEST = './path/to/css/destination';
 
+// Site CSS destination
+// Like the _site/assets/css directory in Jekyll, if necessary
+const SITE_CSS_DEST = './path/to/site/css/destination';
+
 /*
 ----------------------------------------
 TASKS
@@ -103,6 +107,8 @@ gulp.task('build-sass', function(done) {
     ))
     .pipe(postcss(plugins))
     .pipe(sourcemaps.write('.'))
+    // uncomment the next line if necessary for Jekyll to build properly
+    //.pipe(gulp.dest(`${SITE_CSS_DEST}`))
     .pipe(gulp.dest(`${CSS_DEST}`));
 });
 
