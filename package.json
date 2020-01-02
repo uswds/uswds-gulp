@@ -29,6 +29,6 @@
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "path": "^0.12.7",
-    "uswds": "^2.1.0"
+    "uswds": "^2.4.0"
   }
 }
