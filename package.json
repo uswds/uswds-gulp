@@ -1,6 +1,6 @@
 {
   "name": "uswds-gulp",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "A gulp workflow for USWDS",
   "main": "index.js",
   "scripts": {
@@ -20,8 +20,8 @@
   "homepage": "https://github.com/uswds/uswds-gulp#readme",
   "peerDependencies": {
     "autoprefixer": "^9.6.1",
-    "css-mqpacker": "^7.0.0",
     "cssnano": "^4.1.10",
+    "fibers": "^4.0.2",
     "gulp": "^4.0.2",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
@@ -29,6 +29,8 @@
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "path": "^0.12.7",
+    "postcss-sort-media-queries": "^1.0.15",
+    "sass": "^1.25.0",
     "uswds": "^2.4.0"
   }
 }
