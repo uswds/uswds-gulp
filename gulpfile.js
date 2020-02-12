@@ -97,8 +97,7 @@ gulp.task("build-sass", function(done) {
       .src([`${PROJECT_SASS_SRC}/*.scss`])
       .pipe(sourcemaps.init({ largeFile: true }))
       .pipe(
-        sass({
-          fiber: Fiber,
+        sass.sync({
           includePaths: [
             `${PROJECT_SASS_SRC}`,
             `${uswds}/scss`,

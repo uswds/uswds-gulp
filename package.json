@@ -21,7 +21,6 @@
   "peerDependencies": {
     "autoprefixer": "^9.6.1",
     "cssnano": "^4.1.10",
-    "fibers": "^4.0.2",
     "gulp": "^4.0.2",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
@@ -32,5 +31,6 @@
     "postcss-sort-media-queries": "^1.0.15",
     "sass": "^1.25.0",
     "uswds": "^2.4.0"
-  }
+  },
+  "dependencies": {}
 }
