@@ -37,7 +37,7 @@ npm install gulp-cli -g
 Add all the required dependencies at once with following command from your project's root directory:
 
 ```
-npm install autoprefixer gulp@^4.0.0 gulp-notify gulp-postcss gulp-rename gulp-replace gulp-sass gulp-sourcemaps path postcss-csso sass uswds@latest uswds-gulp@github:uswds/uswds-gulp --save-dev
+npm install autoprefixer gulp@^4.0.0 gulp-notify gulp-postcss gulp-replace gulp-sass gulp-sourcemaps postcss-csso sass uswds@latest uswds-gulp@github:uswds/uswds-gulp --save-dev
 ```
 
 ## Usage
