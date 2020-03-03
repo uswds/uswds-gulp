@@ -84,7 +84,7 @@ gulp.task("build-sass", function(done) {
     // Autoprefix
     autoprefixer(autoprefixerOptions),
     // Minify
-    csso({ forceMediaMerge: true })
+    csso({ forceMediaMerge: false })
   ];
   return (
     gulp
