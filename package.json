@@ -8,12 +8,6 @@
     "init": "gulp init",
     "watch": "gulp watch"
   },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "ie 11",
-    "not dead"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uswds/uswds-gulp.git"
