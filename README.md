@@ -11,40 +11,35 @@ You'll need [node](https://nodejs.org/en/download/) and [npm](https://www.npmjs.
 You'll need to install the following packages via `npm`:
 
 - autoprefixer
-- cssnano
-- fibers
-- gulp@^4.0.0
-- gulp-notify
-- gulp-postcss
-- gulp-rename
+- gulp@^4.0.2
 - gulp-replace
+- sass
 - gulp-sass
 - gulp-sourcemaps
-- path
-- postcss-sort-media-queries
-- sass
-- uswds@^2.0.0
+- gulp-postcss
+- postcss-csso
+- uswds@latest
 - uswds-gulp@github:uswds/uswds-gulp
 
 ## Installation
 
 If you've never installed Gulp, you'll need to install the Gulp command line interface:
 
-```
+```bash
 npm install gulp-cli -g
 ```
 
 Add all the required dependencies at once with following command from your project's root directory:
 
-```
-npm install autoprefixer gulp@^4.0.0 gulp-notify gulp-postcss gulp-replace gulp-sass gulp-sourcemaps postcss-csso sass uswds@latest uswds-gulp@github:uswds/uswds-gulp --save-dev
+```bash
+npm install autoprefixer gulp@^4.0.0 gulp-replace sass gulp-sass gulp-sourcemaps gulp-postcss postcss-csso uswds@latest uswds-gulp@github:uswds/uswds-gulp --save-dev
 ```
 
 ## Usage
 
 **If you don't already have a project gulpfile,** copy the `gulpfile.js` to your current directory (the project root):
 
-```
+```bash
 cp node_modules/uswds-gulp/gulpfile.js .
 ```
 
@@ -52,7 +47,7 @@ OR
 
 **If you do already have a project gulpfile,** copy and rename the USWDS gulpfile (then you can manually add the contents of the USWDS gulpfile to your existing gulpfile and continue with the instructions):
 
-```
+```bash
 cp node_modules/uswds-gulp/gulpfile.js gulpfile-uswds.js
 ```
 
@@ -80,7 +75,7 @@ Initialize your USWDS project. Initialization does the following:
 
 Intitialize your USWDS project by running the following command:
 
-```
+```bash
 gulp init
 ```
 
@@ -88,7 +83,7 @@ gulp init
 
 Edit your USWDS settings in the new settings files and add custom Sass to the new `_uswds-theme-custom-styles.scss` file. Watch these files and compile any changes with
 
-```
+```bash
 gulp watch
 ```
 
