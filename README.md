@@ -35,6 +35,9 @@ Add all the required dependencies at once with following command from your proje
 npm install autoprefixer gulp@^4.0.2 gulp-replace sass gulp-sass gulp-sourcemaps gulp-postcss postcss-csso uswds@latest uswds-gulp@github:uswds/uswds-gulp --save-dev
 ```
 
+>Note: If you're using ZSH you'll need to wrap gulp in quotes `"gulp@^4.0.2"`.
+> Otherwise you'll get an error that says `zsh: no matches found: gulp@^4.0.2`.
+
 ## Usage
 
 **If you don't already have a project gulpfile,** copy the `gulpfile.js` to your current directory (the project root):
