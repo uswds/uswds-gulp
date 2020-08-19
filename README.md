@@ -51,6 +51,26 @@ OR
 cp node_modules/uswds-gulp/gulpfile.js gulpfile-uswds.js
 ```
 
+We use autoprefixer for maximum browser compatibility. To ensure you're targeting
+the correct browsers we use a `.browserslistrc` file. **If you don't already
+have one** copy the provided one into your root directory:
+
+```bash
+cp node_modules/uswds-gulp/.browserslistrc .
+```
+
+OR
+
+If you already have a `.browserslistrc` make sure you're targeting the following
+browsers:
+
+```bash
+> 2%
+last 2 versions
+IE 11
+not dead
+```
+
 ---
 
 Open `gulpfile.js` in a text editor. In the `Paths` section, set the following constants with the proper paths. Don't use trailing slashes in the paths. All paths should be relative to the project root.
