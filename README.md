@@ -51,9 +51,7 @@ OR
 cp node_modules/uswds-gulp/gulpfile.js gulpfile-uswds.js
 ```
 
-We use autoprefixer for maximum browser compatibility. To ensure you're targeting
-the correct browsers we use a `.browserslistrc` file. **If you don't already
-have one** copy the provided one into your root directory:
+We use autoprefixer for maximum browser compatibility. To ensure you're targeting the correct browsers we use a `.browserslistrc` file. **If you don't already have one** copy our file to your current directory (the project root):
 
 ```bash
 cp node_modules/uswds-gulp/.browserslistrc .
@@ -61,8 +59,7 @@ cp node_modules/uswds-gulp/.browserslistrc .
 
 OR
 
-If you already have a `.browserslistrc` make sure you're targeting the following
-browsers:
+If you already have a `.browserslistrc` make sure you're targeting the following browsers:
 
 ```bash
 > 2%
