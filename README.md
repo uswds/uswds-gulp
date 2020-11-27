@@ -16,6 +16,7 @@ You'll need to install the following packages via `npm`:
 - sass
 - gulp-sass
 - gulp-sourcemaps
+- postcss
 - gulp-postcss
 - postcss-csso
 - uswds@latest
@@ -32,7 +33,7 @@ npm install gulp-cli -g
 Add all the required dependencies at once with following command from your project's root directory:
 
 ```bash
-npm install autoprefixer@^9.8.6 gulp gulp-replace sass gulp-sass gulp-sourcemaps gulp-postcss@^8.0.0 postcss-csso@^4.0.0 uswds uswds-gulp@github:uswds/uswds-gulp --save-dev
+npm install autoprefixer gulp gulp-replace sass gulp-sass gulp-sourcemaps gulp-postcss postcss postcss-csso uswds uswds-gulp@github:uswds/uswds-gulp --save-dev
 ```
 
 ## Usage

@@ -19,16 +19,16 @@
   },
   "homepage": "https://github.com/uswds/uswds-gulp#readme",
   "peerDependencies": {
-    "autoprefixer": "^9.8.6",
+    "autoprefixer": "^10.0.3",
     "gulp": "^4.0.2",
-    "gulp-postcss": "^8.0.0",
-    "gulp-rename": "^2.0.0",
+    "gulp-postcss": "^9.0.0",
     "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.1.0",
-    "gulp-sourcemaps": "^2.6.5",
-    "postcss-csso": "^4.0.0",
-    "sass": "^1.26.10",
-    "uswds": "^2.8.1"
+    "gulp-sourcemaps": "^3.0.0",
+    "postcss": "^8.1.10",
+    "postcss-csso": "^5.0.0",
+    "sass": "^1.29.0",
+    "uswds": "^2.9.0"
   },
   "dependencies": {}
 }
