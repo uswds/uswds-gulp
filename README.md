@@ -17,6 +17,8 @@ You'll need to install the following packages via `npm`:
 - gulp-sass
 - gulp-sourcemaps
 - gulp-postcss
+- gulp-rename
+- gulp-svg-sprite
 - postcss-csso
 - uswds@latest
 - uswds-gulp@github:uswds/uswds-gulp
@@ -32,7 +34,7 @@ npm install gulp-cli -g
 Add all the required dependencies at once with following command from your project's root directory:
 
 ```bash
-npm install autoprefixer@^9.8.6 gulp gulp-replace sass gulp-sass gulp-sourcemaps gulp-postcss@^8.0.0 postcss-csso@^4.0.0 uswds uswds-gulp@github:uswds/uswds-gulp --save-dev
+npm install autoprefixer@^9.8.6 gulp gulp-replace sass gulp-sass gulp-sourcemaps gulp-rename gulp-svg-sprite gulp-postcss@^8.0.0 postcss-csso@^4.0.0 uswds uswds-gulp@github:uswds/uswds-gulp --save-dev
 ```
 
 ## Usage
@@ -102,6 +104,16 @@ Edit your USWDS settings in the new settings files and add custom Sass to the ne
 
 ```bash
 gulp watch
+```
+
+---
+
+### Update SVG sprite
+
+After running `gulp init`, the USWDS images will be moved into your project. Open the USWDS `images` directory and find the `usa-icons` and `usa-icons-unused` directories. Either add your own SVGs to the `usa-icons` directory or move icons from `usa-icons-unused` into `usa-icons` and rebuild the sprite with
+
+```bash
+gulp svg-sprite
 ```
 
 :rocket:
