@@ -133,7 +133,10 @@ config = {
 };
 
 gulp.task("build-sprite", function (done) {
-  gulp.src(`${IMG_DEST}/usa-icons/**/*.svg`)
+  gulp.src(`${IMG_DEST}/usa-icons/**/*.svg`,
+  {
+    allowEmpty: true
+  })
     .pipe(svgSprite(config))
     .on('error', function(error) {
       console.log("There was an error");
@@ -143,7 +146,10 @@ gulp.task("build-sprite", function (done) {
  });
 
  gulp.task("rename-sprite", function (done) {
-  gulp.src(`${IMG_DEST}/symbol/svg/sprite.symbol.svg`)
+  gulp.src(`${IMG_DEST}/symbol/svg/sprite.symbol.svg`,
+  {
+    allowEmpty: true
+  })
     .pipe(rename(`${IMG_DEST}/sprite.svg`))
     .pipe(gulp.dest(`./`))
     .on('end', function () { done(); });
