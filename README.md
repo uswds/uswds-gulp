@@ -2,6 +2,8 @@
 
 A simple [Gulp 4.0](https://gulpjs.com/) workflow for transforming USWDS Sass into browser-readable CSS.
 
+**Note:** You do _not_ need to clone this repo into your project. Follow the instructions below.
+
 ## Requirements
 
 You'll need to be familiar with the command line.
@@ -31,6 +33,8 @@ If you've never installed Gulp, you'll need to install the Gulp command line int
 ```bash
 npm install gulp-cli -g
 ```
+
+Ensure your project has a `package.json` file. You can create one by following the instructions on the [USWDS fundamentals and quickstart guide](https://designsystem.digital.gov/documentation/fundamentals/).
 
 Add all the required dependencies at once with following command from your project's root directory:
 
