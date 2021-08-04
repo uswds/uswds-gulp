@@ -23,6 +23,8 @@ const uswds = require("./node_modules/uswds-gulp/config/uswds");
 const del = require("del");
 const svgSprite = require("gulp-svg-sprite");
 const rename = require("gulp-rename");
+const log = console.log;
+const colorBlue = "\x1b[34m%s\x1b[0m";
 
 /*
 ----------------------------------------
@@ -61,11 +63,29 @@ TASKS
 ----------------------------------------
 */
 
-gulp.task("copy-uswds-setup", () => {
-  return gulp
-    .src(`${uswds}/scss/theme/**/**`)
-    .pipe(gulp.dest(`${PROJECT_SASS_SRC}`));
-});
+/*
+----------------------------------------
+USWDS specific tasks
+----------------------------------------
+*/
+const usaTasks = {
+  copySetup() {
+    log(colorBlue, "Copying USWDS theme files");
+    return src(PATHS.SRC.SASS).pipe(dest(PATHS.DIST.SASS));
+  },
+  copyFonts() {
+    log(colorBlue, "Copying USWDS fonts");
+    return src(PATHS.SRC.FONTS).pipe(dest(PATHS.DIST.FONTS));
+  },
+  copyImages() {
+    log(colorBlue, "Copying USWDS images");
+    return src(PATHS.SRC.IMG).pipe(dest(PATHS.DIST.IMG));
+  },
+  copyJS() {
+    log(colorBlue, "Copying USWDS JS");
+    return src(PATHS.SRC.JS).pipe(dest(PATHS.DIST.JS));
+  },
+};
 
 gulp.task("copy-uswds-fonts", () => {
   return gulp.src(`${uswds}/fonts/**/**`).pipe(gulp.dest(`${FONTS_DEST}`));
