@@ -28,11 +28,6 @@ const rename = require("gulp-rename");
 ----------------------------------------
 PATHS
 ----------------------------------------
-- All paths are relative to the
-  project root
-- Don't use a trailing `/` for path
-  names
-----------------------------------------
 */
 const PATHS = {
   SRC: {
@@ -58,7 +53,7 @@ const PATHS = {
 // Site CSS destination
 // Like the _site/assets/css directory in Jekyll, if necessary.
 // If using, uncomment line 106
-const SITE_CSS_DEST = "./path/to/site/css/destination";
+// const SITE_CSS_DEST = "./path/to/site/css/destination";
 
 /*
 ----------------------------------------
