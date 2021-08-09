@@ -25,37 +25,13 @@ const svgSprite = require("gulp-svg-sprite");
 const rename = require("gulp-rename");
 const log = console.log;
 const colorBlue = "\x1b[34m%s\x1b[0m";
+const PATHS = require("./config/uswds-paths");
 
 /*
 ----------------------------------------
 PATHS
+Configure in `uswds-paths.js`
 ----------------------------------------
-*/
-const PATHS = {
-  SRC: {
-    SASS: `${uswds}/scss/theme/**/**`,
-    FONTS: `${uswds}/fonts/**/**`,
-    IMG: `${uswds}/img/**/**`,
-    JS: `${uswds}/js/**/**`,
-  },
-  /**
-   * ? Project paths
-   * - All paths are relative to the project root
-   * - Don't use a trailing `/` for path
-   */
-  DIST: {
-    SASS: "./sass",
-    IMG: "./images",
-    FONTS: "./fonts",
-    JS: "./js",
-    CSS: "./css",
-  },
-};
-
-// Site CSS destination
-// Like the _site/assets/css directory in Jekyll, if necessary.
-// If using, uncomment line 106
-// const SITE_CSS_DEST = "./path/to/site/css/destination";
 
 /*
 ----------------------------------------
@@ -155,7 +131,7 @@ function buildSprite() {
     allowEmpty: true,
   })
     .pipe(svgSprite(config))
-    .on("error", .on("error", handleError))
+    .on("error", handleError)
     .pipe(dest(`${PATHS.DIST.IMG}`));
 }
 
