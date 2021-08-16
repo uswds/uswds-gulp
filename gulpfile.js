@@ -47,19 +47,19 @@ USWDS specific tasks
 */
 const usaTasks = {
   copySetup() {
-    log(colorBlue, "Copying USWDS theme files");
+    log(colorBlue, `Copying USWDS theme files to ${paths.dist.sass}`);
     return src(paths.src.sass).pipe(dest(paths.dist.sass));
   },
   copyFonts() {
-    log(colorBlue, "Copying USWDS fonts");
+    log(colorBlue, `Copying USWDS fonts to ${paths.dist.fonts}`);
     return src(paths.src.fonts).pipe(dest(paths.dist.fonts));
   },
   copyImages() {
-    log(colorBlue, "Copying USWDS images");
+    log(colorBlue, `Copying USWDS images to ${paths.dist.img}`);
     return src(paths.src.img).pipe(dest(paths.dist.img));
   },
   copyJS() {
-    log(colorBlue, "Copying USWDS JS");
+    log(colorBlue, `Copying USWDS JS to ${paths.dist.js}`);
     return src(paths.src.js).pipe(dest(paths.dist.js));
   },
 };
@@ -77,25 +77,29 @@ function handleError(error) {
 
 function buildSass() {
   const SETTINGS = {
-    PLUGINS: [
+    plugins: [
       autoprefixer({
         cascade: false,
         grid: true,
       }),
       csso({ forceMediaMerge: false }),
     ],
-    INCLUDES: [paths.dist.sass, `${uswds}/dist/scss`, `${uswds}/dist/scss/packages`],
+    includes: [
+      paths.dist.sass,
+      `${paths.src.uswds_path}/scss`,
+      `${paths.src.uswds_path}/scss/packages`
+    ],
   };
 
   return (
     src([`${paths.dist.sass}/*.scss`])
       .pipe(sourcemaps.init({ largeFile: true }))
       .pipe(
-        sass.sync({ includePaths: SETTINGS.INCLUDES })
+        sass.sync({ includePaths: settings.includes })
           .on("error", handleError)
       )
-      .pipe(replace(/\buswds @version\b/g, `based on uswds v${uswds.version}`))
-      .pipe(postcss(SETTINGS.PLUGINS))
+      // .pipe(replace(/\buswds @version\b/g, `based on uswds v${pkg}`))
+      .pipe(postcss(settings.plugins))
       .pipe(sourcemaps.write("."))
       // uncomment the next line if necessary for Jekyll to build properly
       //.pipe(dest(SITE_CSS_DEST))
@@ -154,7 +158,7 @@ exports.buildSass = buildSass;
 exports.copySetup = usaTasks.copySetup;
 exports.copyFonts = usaTasks.copyFonts;
 exports.copyImages = usaTasks.copyImages;
-exports.copyJS = usaTasks.copyImages;
+exports.copyJS = usaTasks.JS;
 exports.copyAll = parallel(
   this.copySetup,
   this.copyFonts,
