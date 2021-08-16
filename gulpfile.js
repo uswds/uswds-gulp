@@ -13,19 +13,20 @@ USWDS SASS GULPFILE
 
 const autoprefixer = require("autoprefixer");
 const csso = require("postcss-csso");
-const gulp = require("gulp");
+const { src, dest, series, parallel, watch } = require("gulp");
 const pkg = require("./node_modules/uswds/package.json");
 const postcss = require("gulp-postcss");
 const replace = require("gulp-replace");
 const sass = require("gulp-sass")(require("sass"));
 const sourcemaps = require("gulp-sourcemaps");
-const uswds = require("./node_modules/uswds-gulp/config/uswds");
 const del = require("del");
 const svgSprite = require("gulp-svg-sprite");
 const rename = require("gulp-rename");
 const log = console.log;
 const colorBlue = "\x1b[34m%s\x1b[0m";
-const PATHS = require("./config/uswds-paths");
+const paths = require("./config/uswds-paths");
+
+const uswds = "./node_modules/uswds/uswds";
 
 /*
 ----------------------------------------
@@ -47,19 +48,19 @@ USWDS specific tasks
 const usaTasks = {
   copySetup() {
     log(colorBlue, "Copying USWDS theme files");
-    return src(PATHS.SRC.SASS).pipe(dest(PATHS.DIST.SASS));
+    return src(paths.src.sass).pipe(dest(paths.dist.sass));
   },
   copyFonts() {
     log(colorBlue, "Copying USWDS fonts");
-    return src(PATHS.SRC.FONTS).pipe(dest(PATHS.DIST.FONTS));
+    return src(paths.src.fonts).pipe(dest(paths.dist.fonts));
   },
   copyImages() {
     log(colorBlue, "Copying USWDS images");
-    return src(PATHS.SRC.IMG).pipe(dest(PATHS.DIST.IMG));
+    return src(paths.src.img).pipe(dest(paths.dist.img));
   },
   copyJS() {
     log(colorBlue, "Copying USWDS JS");
-    return src(PATHS.SRC.JS).pipe(dest(PATHS.DIST.JS));
+    return src(paths.src.js).pipe(dest(paths.dist.js));
   },
 };
 
@@ -83,27 +84,27 @@ function buildSass() {
       }),
       csso({ forceMediaMerge: false }),
     ],
-    INCLUDES: [PATHS.DIST.SASS, `${uswds}/scss`, `${uswds}/scss/packages`],
+    INCLUDES: [paths.dist.sass, `${uswds}/dist/scss`, `${uswds}/dist/scss/packages`],
   };
 
   return (
-    src([`${PATHS.DIST.SASS}/*.scss`])
+    src([`${paths.dist.sass}/*.scss`])
       .pipe(sourcemaps.init({ largeFile: true }))
       .pipe(
         sass.sync({ includePaths: SETTINGS.INCLUDES })
           .on("error", handleError)
       )
-      .pipe(replace(/\buswds @version\b/g, `based on uswds v${pkg.version}`))
+      .pipe(replace(/\buswds @version\b/g, `based on uswds v${uswds.version}`))
       .pipe(postcss(SETTINGS.PLUGINS))
       .pipe(sourcemaps.write("."))
       // uncomment the next line if necessary for Jekyll to build properly
       //.pipe(dest(SITE_CSS_DEST))
-      .pipe(dest(PATHS.DIST.CSS))
+      .pipe(dest(paths.dist.css))
   );
 }
 
 function watchSass() {
-  return watch(`${PATHS.DIST.SASS}/**/*.scss`, buildSass);
+  return watch(`${paths.dist.sass}/**/*.scss`, buildSass);
 };
 
 function buildSprite() {
@@ -127,24 +128,24 @@ function buildSprite() {
     },
   };
 
-  return src(`${PATHS.DIST.IMG}/usa-icons/**/*.svg`, {
+  return src(`${paths.dist.img}/usa-icons/**/*.svg`, {
     allowEmpty: true,
   })
     .pipe(svgSprite(config))
     .on("error", handleError)
-    .pipe(dest(`${PATHS.DIST.IMG}`));
+    .pipe(dest(`${paths.dist.img}`));
 }
 
 function renameSprite() {
-  return src(`${PATHS.DIST.IMG}/symbol/svg/sprite.symbol.svg`, {
+  return src(`${paths.dist.img}/symbol/svg/sprite.symbol.svg`, {
     allowEmpty: true,
   })
-    .pipe(rename(`${PATHS.DIST.IMG}/sprite.svg`))
+    .pipe(rename(`${paths.dist.img}/sprite.svg`))
     .pipe(dest(`./`));
 }
 
 function cleanSprite() {
-  return del(`${PATHS.DIST.IMG}/symbol`);
+  return del(`${paths.dist.img}/symbol`);
 }
 
 
