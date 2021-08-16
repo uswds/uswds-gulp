@@ -76,7 +76,7 @@ function handleError(error) {
 }
 
 function buildSass() {
-  const SETTINGS = {
+  const settings = {
     plugins: [
       autoprefixer({
         cascade: false,
