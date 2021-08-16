@@ -158,7 +158,7 @@ exports.buildSass = buildSass;
 exports.copySetup = usaTasks.copySetup;
 exports.copyFonts = usaTasks.copyFonts;
 exports.copyImages = usaTasks.copyImages;
-exports.copyJS = usaTasks.JS;
+exports.copyJS = usaTasks.copyJS;
 exports.copyAll = parallel(
   this.copySetup,
   this.copyFonts,
