@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/uswds/uswds-gulp#readme",
   "peerDependencies": {
+    "uswds": "^2.12.0"
+  },
+  "devDependencies": {
     "autoprefixer": "^10.3.1",
     "gulp": "^4.0.2",
     "gulp-postcss": "^9.0.0",
@@ -32,4 +35,5 @@
     "postcss-csso": "^5.0.1",
     "sass": "^1.37.5",
     "del": "^6.0.0"
+  }
 }
