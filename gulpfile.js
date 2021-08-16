@@ -29,7 +29,6 @@ const colorBlue = "\x1b[34m%s\x1b[0m";
 /*
 ----------------------------------------
 PATHS
-Configure in `uswds-paths.js`
 ----------------------------------------
 */
 let paths = {
