@@ -33,6 +33,29 @@ const uswds = "./node_modules/uswds/uswds";
 PATHS
 Configure in `uswds-paths.js`
 ----------------------------------------
+*/
+let paths = {
+  src: {
+    uswds: `node_modules/uswds/dist`,
+    sass: `node_modules/uswds/dist/scss/theme/**/**`,
+    fonts: `node_modules/uswds/dist/fonts/**/**`,
+    img: `node_modules/uswds/dist/img/**/**`,
+    js: `node_modules/uswds/dist/js/**/**`,
+  },
+  /**
+   * ? project paths
+   * - all paths are relative to the project root
+   * - don't use a trailing `/` for path
+   */
+  dist: {
+    sass: "./sass",
+    img: "./images",
+    fonts: "./fonts",
+    js: "./js",
+    css: "./css",
+  },
+}
+
 
 /*
 ----------------------------------------
@@ -86,8 +109,8 @@ function buildSass() {
     ],
     includes: [
       paths.dist.sass,
-      `${paths.src.uswds_path}/scss`,
-      `${paths.src.uswds_path}/scss/packages`
+      `${paths.src.uswds}/scss`,
+      `${paths.src.uswds}/scss/packages`
     ],
   };
 
@@ -152,7 +175,7 @@ function cleanSprite() {
   return del(`${paths.dist.img}/symbol`);
 }
 
-
+exports.paths = paths.dist;
 exports.watch = series(buildSass, watchSass);
 exports.buildSass = buildSass;
 exports.copySetup = usaTasks.copySetup;
