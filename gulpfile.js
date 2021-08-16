@@ -14,7 +14,7 @@ USWDS SASS GULPFILE
 const autoprefixer = require("autoprefixer");
 const csso = require("postcss-csso");
 const { src, dest, series, parallel, watch } = require("gulp");
-const pkg = require("./node_modules/uswds/package.json");
+const pkg = require("../uswds/package.json").version;
 const postcss = require("gulp-postcss");
 const replace = require("gulp-replace");
 const sass = require("gulp-sass")(require("sass"));
@@ -24,9 +24,7 @@ const svgSprite = require("gulp-svg-sprite");
 const rename = require("gulp-rename");
 const log = console.log;
 const colorBlue = "\x1b[34m%s\x1b[0m";
-const paths = require("./config/uswds-paths");
 
-const uswds = "./node_modules/uswds/uswds";
 
 /*
 ----------------------------------------
@@ -121,7 +119,7 @@ function buildSass() {
         sass.sync({ includePaths: settings.includes })
           .on("error", handleError)
       )
-      // .pipe(replace(/\buswds @version\b/g, `based on uswds v${pkg}`))
+      .pipe(replace(/\buswds @version\b/g, `based on uswds v${pkg}`))
       .pipe(postcss(settings.plugins))
       .pipe(sourcemaps.write("."))
       // uncomment the next line if necessary for Jekyll to build properly
@@ -177,7 +175,6 @@ function cleanSprite() {
 
 exports.paths = paths.dist;
 exports.watch = series(buildSass, watchSass);
-exports.buildSass = buildSass;
 exports.copySetup = usaTasks.copySetup;
 exports.copyFonts = usaTasks.copyFonts;
 exports.copyImages = usaTasks.copyImages;
@@ -188,6 +185,7 @@ exports.copyAll = parallel(
   this.copyImages,
   this.copyJS
 );
-exports.svgSprite = series(buildSprite, renameSprite, cleanSprite);
+exports.buildSass = buildSass;
+exports.buildSvgSprite = series(buildSprite, renameSprite, cleanSprite);
 exports.init = series(this.copyAll, buildSass);
-exports.default = parallel(this.watch);
+exports.default = this.init;
