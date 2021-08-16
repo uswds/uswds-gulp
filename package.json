@@ -1,6 +1,6 @@
 {
   "name": "uswds-gulp",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A gulp workflow for USWDS",
   "main": "gulpfile.js",
   "scripts": {
@@ -12,7 +12,12 @@
     "type": "git",
     "url": "git+https://github.com/uswds/uswds-gulp.git"
   },
-  "author": "Dan O. Williams",
+  "author": "USWDS Core team",
+  "contributors": [
+    "Dan O. Williams <daniel.williams@gsa.gov>",
+    "James Mejia <james.mejia@gsa.gov>",
+    "Scott Queen <scott.queen@gsa.gov>"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/uswds/uswds-gulp/issues"
