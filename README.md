@@ -39,7 +39,7 @@ Ensure your project has a `package.json` file. You can create one by following t
 Add all the required dependencies at once with following command from your project's root directory:
 
 ```bash
-npm install autoprefixer gulp gulp-replace sass gulp-sass gulp-sourcemaps gulp-rename gulp-svg-sprite gulp-postcss postcss postcss-csso uswds uswds-gulp@github:uswds/uswds-gulp --save-dev
+npm install autoprefixer gulp gulp-replace sass gulp-sass gulp-sourcemaps gulp-rename gulp-svg-sprite gulp-postcss postcss postcss-csso del uswds uswds-gulp@github:uswds/uswds-gulp --save-dev
 ```
 
 ## Usage
