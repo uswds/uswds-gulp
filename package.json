@@ -1,7 +1,7 @@
 {
-  "name": "uswds-gulp",
-  "version": "1.0.0",
-  "description": "A gulp workflow for USWDS",
+  "name": "@uswds/compile",
+  "version": "0.1.0",
+  "description": "A gulp-based compiler for USWDS Sass and JavaScript",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -23,9 +23,6 @@
     "url": "https://github.com/uswds/uswds-gulp/issues"
   },
   "homepage": "https://github.com/uswds/uswds-gulp#readme",
-  "peerDependencies": {
-    "uswds": "^2.12.0"
-  },
   "devDependencies": {
     "autoprefixer": "^10.3.1",
     "gulp": "^4.0.2",
