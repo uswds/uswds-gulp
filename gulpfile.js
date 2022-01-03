@@ -14,7 +14,7 @@ USWDS SASS GULPFILE
 const autoprefixer = require("autoprefixer");
 const csso = require("postcss-csso");
 const { src, dest, series, parallel, watch } = require("gulp");
-const pkg = require("../uswds/package.json").version;
+const pkg = require("../../uswds/package.json").version;
 const postcss = require("gulp-postcss");
 const replace = require("gulp-replace");
 const sass = require("gulp-sass")(require("sass"));
