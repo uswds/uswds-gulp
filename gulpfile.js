@@ -184,7 +184,11 @@ exports.copyAll = parallel(
   this.copyImages,
   this.copyJS
 );
-exports.buildSass = buildSass;
-exports.buildSvgSprite = series(buildSprite, renameSprite, cleanSprite);
-exports.init = series(this.copyAll, buildSass);
+exports.compileSass = buildSass;
+exports.compileIcons = series(buildSprite, renameSprite, cleanSprite);
+exports.compile = parallel(
+  buildSass,
+  this.compileIcons
+);
+exports.init = series(this.copyAll, this.compile);
 exports.default = this.init;
