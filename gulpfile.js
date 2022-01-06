@@ -24,6 +24,7 @@ const svgSprite = require("gulp-svg-sprite");
 const rename = require("gulp-rename");
 const log = console.log;
 const colorBlue = "\x1b[34m%s\x1b[0m";
+const gulpif = require('gulp-if');
 
 
 /*
@@ -53,12 +54,13 @@ let settings = {
         fonts: "./assets/uswds/fonts",
         js: "./assets/uswds/js",
         css: "./assets/css",
+        jekyll: false,
       },
     },
-    useJekyll: true,
   }
 }
 
+let paths = settings.compile.paths;
 
 /*
 ----------------------------------------
@@ -73,20 +75,20 @@ USWDS specific tasks
 */
 const copy = {
   theme() {
-    log(colorBlue, `Copying USWDS theme files to ${settings.paths.dist.sass}`);
-    return src(`${settings.paths.src.theme}/*/**`).pipe(dest(settings.paths.dist.sass));
+    log(colorBlue, `Copying USWDS theme files to ${paths.dist.sass}`);
+    return src(`${paths.src.theme}/*/**`).pipe(dest(paths.dist.sass));
   },
   fonts() {
-    log(colorBlue, `Copying USWDS fonts to ${settings.paths.dist.fonts}`);
-    return src(`${settings.paths.src.fonts}/*/**`).pipe(dest(settings.paths.dist.fonts));
+    log(colorBlue, `Copying USWDS fonts to ${paths.dist.fonts}`);
+    return src(`${paths.src.fonts}/*/**`).pipe(dest(paths.dist.fonts));
   },
   images() {
-    log(colorBlue, `Copying USWDS images to ${settings.paths.dist.img}`);
-    return src(`${settings.paths.src.img}/*/**`).pipe(dest(settings.paths.dist.img));
+    log(colorBlue, `Copying USWDS images to ${paths.dist.img}`);
+    return src(`${paths.src.img}/*/**`).pipe(dest(paths.dist.img));
   },
   js() {
-    log(colorBlue, `Copying USWDS JS to ${settings.paths.dist.js}`);
-    return src(`${settings.paths.src.js}/*/**`).pipe(dest(settings.paths.dist.js));
+    log(colorBlue, `Copying USWDS JS to ${paths.dist.js}`);
+    return src(`${paths.src.js}/*/**`).pipe(dest(paths.dist.js));
   },
 };
 
@@ -111,14 +113,14 @@ function buildSass() {
       csso({ forceMediaMerge: false }),
     ],
     includes: [
-      settings.paths.dist.sass,
-      settings.paths.src.sass,
-      `${settings.paths.src.sass}/packages`
+      paths.dist.sass,
+      paths.src.sass,
+      `${paths.src.sass}/packages`
     ],
   };
 
   return (
-    src([`${settings.paths.dist.sass}/*.scss`])
+    src([`${paths.dist.sass}/*.scss`])
       .pipe(sourcemaps.init({ largeFile: true }))
       .pipe(
         sass.sync({ includePaths: settings.includes })
@@ -127,14 +129,13 @@ function buildSass() {
       .pipe(replace(/\buswds @version\b/g, `based on uswds v${pkg}`))
       .pipe(postcss(settings.plugins))
       .pipe(sourcemaps.write("."))
-      // uncomment the next line if necessary for Jekyll to build properly
-      //.pipe(dest(SITE_CSS_DEST))
-      .pipe(dest(settings.paths.dist.css))
+      .pipe(gulpif(paths.dist.jekyll, dest(paths.dist.jekyll)))
+      .pipe(dest(paths.dist.css))
   );
 }
 
 function watchSass() {
-  return watch(`${settings.paths.dist.sass}/**/*.scss`, buildSass);
+  return watch(`${paths.dist.sass}/**/*.scss`, buildSass);
 };
 
 function buildSprite() {
@@ -158,24 +159,24 @@ function buildSprite() {
     },
   };
 
-  return src(`${settings.paths.dist.img}/usa-icons/**/*.svg`, {
+  return src(`${paths.dist.img}/usa-icons/**/*.svg`, {
     allowEmpty: true,
   })
     .pipe(svgSprite(config))
     .on("error", handleError)
-    .pipe(dest(`${settings.paths.dist.img}`));
+    .pipe(dest(`${paths.dist.img}`));
 }
 
 function renameSprite() {
-  return src(`${settings.paths.dist.img}/symbol/svg/sprite.symbol.svg`, {
+  return src(`${paths.dist.img}/symbol/svg/sprite.symbol.svg`, {
     allowEmpty: true,
   })
-    .pipe(rename(`${settings.paths.dist.img}/sprite.svg`))
+    .pipe(rename(`${paths.dist.img}/sprite.svg`))
     .pipe(dest(`./`));
 }
 
 function cleanSprite() {
-  return del(`${settings.paths.dist.img}/symbol`);
+  return del(`${paths.dist.img}/symbol`);
 }
 
 exports.settings = settings;
