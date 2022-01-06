@@ -60,7 +60,8 @@ let settings = {
   },
   sprite: {
     width: 24,
-    height: 24
+    height: 24,
+    separator: "-",
   }
 }
 
@@ -151,7 +152,7 @@ function buildSprite() {
         maxHeight: settings.sprite.width,
       },
       id: {
-        separator: "-",
+        separator: settings.sprite.separator,
       },
       spacing: {
         // Add padding
