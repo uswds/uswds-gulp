@@ -47,10 +47,10 @@ let paths = {
    */
   dist: {
     sass: "./sass",
-    img: "./images",
-    fonts: "./fonts",
-    js: "./js",
-    css: "./css",
+    img: "./assets/uswds/images",
+    fonts: "./assets/uswds/fonts",
+    js: "./assets/uswds/js",
+    css: "./assets/css",
   },
 }
 
