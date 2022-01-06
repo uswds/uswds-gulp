@@ -32,27 +32,30 @@ SETTINGS
 ----------------------------------------
 */
 let settings = {
-  paths: {
-    src: {
-      uswds: "node_modules/uswds/dist",
-      sass: "node_modules/uswds/dist/scss",
-      theme: "node_modules/uswds/dist/scss/theme",
-      fonts: "node_modules/uswds/dist/fonts",
-      img: "node_modules/uswds/dist/img",
-      js: "node_modules/uswds/dist/js",
+  compile: {
+    paths: {
+      src: {
+        uswds: "node_modules/uswds/dist",
+        sass: "node_modules/uswds/dist/scss",
+        theme: "node_modules/uswds/dist/scss/theme",
+        fonts: "node_modules/uswds/dist/fonts",
+        img: "node_modules/uswds/dist/img",
+        js: "node_modules/uswds/dist/js",
+      },
+      /**
+       * ? project paths
+       * - all paths are relative to the project root
+       * - don't use a trailing `/` for path
+       */
+      dist: {
+        sass: "./sass",
+        img: "./assets/uswds/images",
+        fonts: "./assets/uswds/fonts",
+        js: "./assets/uswds/js",
+        css: "./assets/css",
+      },
     },
-    /**
-     * ? project paths
-     * - all paths are relative to the project root
-     * - don't use a trailing `/` for path
-     */
-    dist: {
-      sass: "./sass",
-      img: "./assets/uswds/images",
-      fonts: "./assets/uswds/fonts",
-      js: "./assets/uswds/js",
-      css: "./assets/css",
-    },
+    useJekyll: true,
   }
 }
 
@@ -68,20 +71,20 @@ TASKS
 USWDS specific tasks
 ----------------------------------------
 */
-const usaTasks = {
-  copySetup() {
+const copy = {
+  theme() {
     log(colorBlue, `Copying USWDS theme files to ${settings.paths.dist.sass}`);
     return src(`${settings.paths.src.theme}/*/**`).pipe(dest(settings.paths.dist.sass));
   },
-  copyFonts() {
+  fonts() {
     log(colorBlue, `Copying USWDS fonts to ${settings.paths.dist.fonts}`);
     return src(`${settings.paths.src.fonts}/*/**`).pipe(dest(settings.paths.dist.fonts));
   },
-  copyImages() {
+  images() {
     log(colorBlue, `Copying USWDS images to ${settings.paths.dist.img}`);
     return src(`${settings.paths.src.img}/*/**`).pipe(dest(settings.paths.dist.img));
   },
-  copyJS() {
+  js() {
     log(colorBlue, `Copying USWDS JS to ${settings.paths.dist.js}`);
     return src(`${settings.paths.src.js}/*/**`).pipe(dest(settings.paths.dist.js));
   },
@@ -177,12 +180,12 @@ function cleanSprite() {
 
 exports.settings = settings;
 exports.watch = series(buildSass, watchSass);
-exports.copySetup = usaTasks.copySetup;
-exports.copyFonts = usaTasks.copyFonts;
-exports.copyImages = usaTasks.copyImages;
-exports.copyJS = usaTasks.copyJS;
+exports.copyTheme = copy.theme;
+exports.copyFonts = copy.fonts;
+exports.copyImages = copy.images;
+exports.copyJS = copy.js;
 exports.copyAll = parallel(
-  this.copySetup,
+  this.copyTheme,
   this.copyFonts,
   this.copyImages,
   this.copyJS
