@@ -28,30 +28,32 @@ const colorBlue = "\x1b[34m%s\x1b[0m";
 
 /*
 ----------------------------------------
-PATHS
+SETTINGS
 ----------------------------------------
 */
-let paths = {
-  src: {
-    uswds: "node_modules/uswds/dist",
-    sass: "node_modules/uswds/dist/scss",
-    theme: "node_modules/uswds/dist/scss/theme",
-    fonts: "node_modules/uswds/dist/fonts",
-    img: "node_modules/uswds/dist/img",
-    js: "node_modules/uswds/dist/js",
-  },
-  /**
-   * ? project paths
-   * - all paths are relative to the project root
-   * - don't use a trailing `/` for path
-   */
-  dist: {
-    sass: "./sass",
-    img: "./assets/uswds/images",
-    fonts: "./assets/uswds/fonts",
-    js: "./assets/uswds/js",
-    css: "./assets/css",
-  },
+let settings = {
+  paths: {
+    src: {
+      uswds: "node_modules/uswds/dist",
+      sass: "node_modules/uswds/dist/scss",
+      theme: "node_modules/uswds/dist/scss/theme",
+      fonts: "node_modules/uswds/dist/fonts",
+      img: "node_modules/uswds/dist/img",
+      js: "node_modules/uswds/dist/js",
+    },
+    /**
+     * ? project paths
+     * - all paths are relative to the project root
+     * - don't use a trailing `/` for path
+     */
+    dist: {
+      sass: "./sass",
+      img: "./assets/uswds/images",
+      fonts: "./assets/uswds/fonts",
+      js: "./assets/uswds/js",
+      css: "./assets/css",
+    },
+  }
 }
 
 
@@ -68,20 +70,20 @@ USWDS specific tasks
 */
 const usaTasks = {
   copySetup() {
-    log(colorBlue, `Copying USWDS theme files to ${paths.dist.sass}`);
-    return src(`${paths.src.theme}/*/**`).pipe(dest(paths.dist.sass));
+    log(colorBlue, `Copying USWDS theme files to ${settings.paths.dist.sass}`);
+    return src(`${settings.paths.src.theme}/*/**`).pipe(dest(settings.paths.dist.sass));
   },
   copyFonts() {
-    log(colorBlue, `Copying USWDS fonts to ${paths.dist.fonts}`);
-    return src(`${paths.src.fonts}/*/**`).pipe(dest(paths.dist.fonts));
+    log(colorBlue, `Copying USWDS fonts to ${settings.paths.dist.fonts}`);
+    return src(`${settings.paths.src.fonts}/*/**`).pipe(dest(settings.paths.dist.fonts));
   },
   copyImages() {
-    log(colorBlue, `Copying USWDS images to ${paths.dist.img}`);
-    return src(`${paths.src.img}/*/**`).pipe(dest(paths.dist.img));
+    log(colorBlue, `Copying USWDS images to ${settings.paths.dist.img}`);
+    return src(`${settings.paths.src.img}/*/**`).pipe(dest(settings.paths.dist.img));
   },
   copyJS() {
-    log(colorBlue, `Copying USWDS JS to ${paths.dist.js}`);
-    return src(`${paths.src.js}/*/**`).pipe(dest(paths.dist.js));
+    log(colorBlue, `Copying USWDS JS to ${settings.paths.dist.js}`);
+    return src(`${settings.paths.src.js}/*/**`).pipe(dest(settings.paths.dist.js));
   },
 };
 
@@ -106,14 +108,14 @@ function buildSass() {
       csso({ forceMediaMerge: false }),
     ],
     includes: [
-      paths.dist.sass,
-      paths.src.sass,
-      `${paths.src.sass}/packages`
+      settings.paths.dist.sass,
+      settings.paths.src.sass,
+      `${settings.paths.src.sass}/packages`
     ],
   };
 
   return (
-    src([`${paths.dist.sass}/*.scss`])
+    src([`${settings.paths.dist.sass}/*.scss`])
       .pipe(sourcemaps.init({ largeFile: true }))
       .pipe(
         sass.sync({ includePaths: settings.includes })
@@ -124,12 +126,12 @@ function buildSass() {
       .pipe(sourcemaps.write("."))
       // uncomment the next line if necessary for Jekyll to build properly
       //.pipe(dest(SITE_CSS_DEST))
-      .pipe(dest(paths.dist.css))
+      .pipe(dest(settings.paths.dist.css))
   );
 }
 
 function watchSass() {
-  return watch(`${paths.dist.sass}/**/*.scss`, buildSass);
+  return watch(`${settings.paths.dist.sass}/**/*.scss`, buildSass);
 };
 
 function buildSprite() {
@@ -153,27 +155,27 @@ function buildSprite() {
     },
   };
 
-  return src(`${paths.dist.img}/usa-icons/**/*.svg`, {
+  return src(`${settings.paths.dist.img}/usa-icons/**/*.svg`, {
     allowEmpty: true,
   })
     .pipe(svgSprite(config))
     .on("error", handleError)
-    .pipe(dest(`${paths.dist.img}`));
+    .pipe(dest(`${settings.paths.dist.img}`));
 }
 
 function renameSprite() {
-  return src(`${paths.dist.img}/symbol/svg/sprite.symbol.svg`, {
+  return src(`${settings.paths.dist.img}/symbol/svg/sprite.symbol.svg`, {
     allowEmpty: true,
   })
-    .pipe(rename(`${paths.dist.img}/sprite.svg`))
+    .pipe(rename(`${settings.paths.dist.img}/sprite.svg`))
     .pipe(dest(`./`));
 }
 
 function cleanSprite() {
-  return del(`${paths.dist.img}/symbol`);
+  return del(`${settings.paths.dist.img}/symbol`);
 }
 
-exports.paths = paths.dist;
+exports.paths = settings.paths.dist;
 exports.watch = series(buildSass, watchSass);
 exports.copySetup = usaTasks.copySetup;
 exports.copyFonts = usaTasks.copyFonts;
