@@ -175,7 +175,7 @@ function cleanSprite() {
   return del(`${settings.paths.dist.img}/symbol`);
 }
 
-exports.paths = settings.paths.dist;
+exports.settings = settings;
 exports.watch = series(buildSass, watchSass);
 exports.copySetup = usaTasks.copySetup;
 exports.copyFonts = usaTasks.copyFonts;
