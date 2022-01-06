@@ -57,6 +57,10 @@ let settings = {
         jekyll: false,
       },
     },
+  },
+  sprite: {
+    width: 24,
+    height: 24
   }
 }
 
@@ -143,8 +147,8 @@ function buildSprite() {
     shape: {
       dimension: {
         // Set maximum dimensions
-        maxWidth: 24,
-        maxHeight: 24,
+        maxWidth: settings.sprite.width,
+        maxHeight: settings.sprite.width,
       },
       id: {
         separator: "-",
