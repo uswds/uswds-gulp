@@ -33,11 +33,12 @@ PATHS
 */
 let paths = {
   src: {
-    uswds: `node_modules/uswds/dist`,
-    sass: `node_modules/uswds/dist/scss/theme/**/**`,
-    fonts: `node_modules/uswds/dist/fonts/**/**`,
-    img: `node_modules/uswds/dist/img/**/**`,
-    js: `node_modules/uswds/dist/js/**/**`,
+    uswds: "node_modules/uswds/dist",
+    sass: "node_modules/uswds/dist/scss",
+    theme: "node_modules/uswds/dist/scss/theme",
+    fonts: "node_modules/uswds/dist/fonts",
+    img: "node_modules/uswds/dist/img",
+    js: "node_modules/uswds/dist/js",
   },
   /**
    * ? project paths
@@ -68,19 +69,19 @@ USWDS specific tasks
 const usaTasks = {
   copySetup() {
     log(colorBlue, `Copying USWDS theme files to ${paths.dist.sass}`);
-    return src(paths.src.sass).pipe(dest(paths.dist.sass));
+    return src(`${paths.src.theme}/*/**`).pipe(dest(paths.dist.sass));
   },
   copyFonts() {
     log(colorBlue, `Copying USWDS fonts to ${paths.dist.fonts}`);
-    return src(paths.src.fonts).pipe(dest(paths.dist.fonts));
+    return src(`${paths.src.fonts}/*/**`).pipe(dest(paths.dist.fonts));
   },
   copyImages() {
     log(colorBlue, `Copying USWDS images to ${paths.dist.img}`);
-    return src(paths.src.img).pipe(dest(paths.dist.img));
+    return src(`${paths.src.img}/*/**`).pipe(dest(paths.dist.img));
   },
   copyJS() {
     log(colorBlue, `Copying USWDS JS to ${paths.dist.js}`);
-    return src(paths.src.js).pipe(dest(paths.dist.js));
+    return src(`${paths.src.js}/*/**`).pipe(dest(paths.dist.js));
   },
 };
 
@@ -106,8 +107,8 @@ function buildSass() {
     ],
     includes: [
       paths.dist.sass,
-      `${paths.src.uswds}/scss`,
-      `${paths.src.uswds}/scss/packages`
+      paths.src.sass,
+      `${paths.src.sass}/packages`
     ],
   };
 
