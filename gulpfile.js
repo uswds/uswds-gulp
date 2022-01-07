@@ -24,8 +24,6 @@ const svgSprite = require("gulp-svg-sprite");
 const rename = require("gulp-rename");
 const log = console.log;
 const colorBlue = "\x1b[34m%s\x1b[0m";
-const gulpif = require('gulp-if');
-
 
 /*
 ----------------------------------------
