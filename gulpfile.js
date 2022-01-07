@@ -54,7 +54,7 @@ let settings = {
         fonts: "./assets/uswds/fonts",
         js: "./assets/uswds/js",
         css: "./assets/css",
-        jekyll: false,
+        jekyll: "./_site/assets/css",
       },
     },
   },
@@ -134,6 +134,7 @@ function buildSass() {
       .pipe(replace(/\buswds @version\b/g, `based on uswds v${pkg}`))
       .pipe(postcss(settings.plugins))
       .pipe(sourcemaps.write("."))
+      .pipe(gulpif(paths.dist.jekyll, dest(paths.dist.jekyll)))
       .pipe(dest(paths.dist.css))
   );
 }
