@@ -185,16 +185,18 @@ function cleanSprite() {
 }
 
 exports.settings = settings;
-exports.watch = series(buildSass, watchSass);
 exports.copyTheme = copy.theme;
 exports.copyFonts = copy.fonts;
 exports.copyImages = copy.images;
 exports.copyJS = copy.js;
+exports.copyAssets = parallel(
+  copy.fonts,
+  copy.images,
+  copy.js
+);
 exports.copyAll = parallel(
-  this.copyTheme,
-  this.copyFonts,
-  this.copyImages,
-  this.copyJS
+  copy.theme,
+  this.copyAssets
 );
 exports.compileSass = buildSass;
 exports.compileIcons = series(buildSprite, renameSprite, cleanSprite);
@@ -203,4 +205,5 @@ exports.compile = parallel(
   this.compileIcons
 );
 exports.init = series(this.copyAll, this.compile);
-exports.default = this.init;
+exports.watch = series(buildSass, watchSass);
+exports.default = this.watch;
