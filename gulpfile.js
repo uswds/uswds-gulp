@@ -54,7 +54,6 @@ let settings = {
         fonts: "./assets/uswds/fonts",
         js: "./assets/uswds/js",
         css: "./assets/css",
-        jekyllCss: "./_site/assets/css",
       },
     },
   },
@@ -109,6 +108,7 @@ function handleError(error) {
 }
 
 function buildSass() {
+
   const buildSettings = {
     plugins: [
       autoprefixer({
@@ -134,7 +134,6 @@ function buildSass() {
       .pipe(replace(/\buswds @version\b/g, `based on uswds v${pkg}`))
       .pipe(postcss(buildSettings.plugins))
       .pipe(sourcemaps.write("."))
-      .pipe(gulpif(paths.dist.jekyllCss, dest(paths.dist.jekyllCss)))
       .pipe(dest(paths.dist.css))
   );
 }

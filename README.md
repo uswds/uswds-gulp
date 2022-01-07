@@ -4,19 +4,13 @@ Simple [Gulp 4.0](https://gulpjs.com/) functions for copying USWDS static assets
 
 ## Requirements
 
-You'll need to be familiar with the command line.
-
-You'll need [node](https://nodejs.org/en/download/) and [npm](https://www.npmjs.com/get-npm).
+- [Node.js](https://nodejs.org/en/download/)
+- [npm](https://www.npmjs.com/get-npm)
+- [uswds](https://www.npmjs.com/package/uswds)
 
 ## Installation
 
-Install `uswds` in your project's root directory:
-
-```bash
-npm install uswds@latest --save
-```
-
-Install `compile` in your project's root directory:
+Install `compile` in the project root:
 
 ```bash
 npm install @uswds/compile --save
@@ -26,17 +20,19 @@ npm install @uswds/compile --save
 
 ### Overview
 1. Create a `gulpfile.js` file in the project root that includes the following:
-    -  Import of `@uswds/compile`
-    -  Project path settings (see below)
-    -  Exports for the functions/tasks you need (see below)
+    -  Import of the `@uswds/compile` package
+    -  Any project path settings you wish to modify (see [Path settings](#path-settings), below)
+    -  Exports for the functions/tasks you need (see [Functions](#functions), below)
 1. In the terminal run `npx gulp [function]`
 
 ### Gulpfile setup
-Create a file called `gulpfile.js` at the root of your project (or use an existing Gulpfile if one already exists).
+Create a file called `gulpfile.js` at the root of your project (or use an existing Gulpfile if one already exists). It needs to do the following
 
-- Import `@uswds/compile`
-- Set any project settings (see below)
-- Export the functions/tasks you need (see below)
+- Import the `@uswds/compile` package
+- Set any project settings
+- Export the functions/tasks you need
+
+Here's an example of how your `gulpfile.js` might look:
 
 ```js
 /* gulpfile.js */
@@ -76,8 +72,6 @@ Setting | Default | Description
 `paths.dist.fonts` | `"./assets/uswds/fonts"` | Project destination for fonts
 `paths.dist.js` | `"./assets/uswds/fonts"` | Project destination for compiled JavaScript
 `paths.dist.css` | `"./assets/uswds/fonts"` | Project destination for compiled CSS
-`paths.dist.jekyllCSS` | `""` | For Jekyll projects, the directory where Jekyll renders site CSS. Typically something like `./_site/assets/css`
-
 
 ### Functions
 Export USWDS Compile functions in your project's `gulpfile.js` to use them in your project.
@@ -99,81 +93,29 @@ Function | Description
 `watch` | Compiles, then recompiles when there are changes in  `paths.dist.sass`
 
 
+## Running the compile functions
+For any function you defined as an `export` in your `gulpfile.js` you can run `npx gulp [function]`
 
-**Scaffolding functions**
-- `copySetup` Copy USWDS SCSS theme files.
-- `copyFonts` Copy USWDS fonts.
-- `copyImages` Copy USWDS images.
-- `copyJS` Copy USWDS JavaScript.
-- `copyAll` Copy all USWDS assets.
-- `init`
-  - `copyAll`
-  - `buildSass`
-- `default`
-  - `init`
+For example, if you have the following `gulpfile.js`:
 
-**Build tasks**
-- `buildSass` Compile SCSS.
-- `buildSvgSprite` Create a SVG sprite based on icons inside usa-icons.
+```
+/* gulpfile,js */
 
-**Watch tasks**
-- `watch` Watch for SCSS changes.
+...
 
----
-
-**If you don't already have a project gulpfile,** copy the `gulpfile.js` to your current directory (the project root):
-
-```bash
-cp node_modules/uswds-gulp/gulpfile.js .
+exports.compile = uswds.compile;
+exports.watch = uswds.watch;
+exports.init = uswds.init;
+exports.update = uswds.updateUswds;
+exports.default = uswds.watch;
 ```
 
----
+With that setup, you could do the following in the terminal:
 
-**If you do already have a project gulpfile,** you can pick and choose the tasks you need:
-
-```js
-const uswdsTasks = require("uswds-gulp");
-
-exports.copyAll = uswdsTasks.copyAll;
-exports.buildSass = uswdsTasks.buildSass;
-exports.buildSvgSprite = uswdsTasks.buildSvgSprite;
-```
-
-You can customize your paths like so:
-
-```js
-const uswdsTasks = require("uswds-gulp");
-
-// Where I want to place compiled SCSS
-uswdsTasks.paths.css = './my-project-dist/css/'
-
-// Other paths available:
-//  sass: "./sass",
-//  img: "./images",
-//  fonts: "./fonts",
-//  js: "./js",
-//  css: "./css",
-
-exports.buildSass = uswdsTasks.buildSass;
-```
-
----
-
-**If you only need basic setup and compilation (scaffolding, SCSS, icons)**
-
-If you just quickly want to compile SCSS or build an SVG Spritesheet you can run the tasks immediately after installing USWDS-Gulp.
-
-**View default tasks**
-
-```bash
-npx gulp --tasks-simple --gulpfile ./node_modules/uswds-gulp/gulpfile.js
-```
-
-**Running default tasks**
-
-```bash
-npx gulp buildSass --gulpfile ./node_modules/uswds-gulp/gulpfile.js --cwd .
-```
+- **Compile Sass:** `npx gulp compile` or `npx gulp`
+- **Watch for changes and recompile:** `npx gulp watch`
+- **Initialize a new project:** `npx gulp init`
+- **Update USWDS statci assets and recompile:** `npx gulp update`
 
 ---
 
