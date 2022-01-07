@@ -92,7 +92,7 @@ const copy = {
     return src(`${paths.src.img}/*/**`).pipe(dest(paths.dist.img));
   },
   js() {
-    log(colorBlue, `Copying USWDS JS to ${paths.dist.js}`);
+    log(colorBlue, `Copying USWDS JavaScript to ${paths.dist.js}`);
     return src(`${paths.src.js}/*/**`).pipe(dest(paths.dist.js));
   },
 };
@@ -185,6 +185,7 @@ function cleanSprite() {
 }
 
 exports.settings = settings;
+exports.paths = paths;
 exports.copyTheme = copy.theme;
 exports.copyFonts = copy.fonts;
 exports.copyImages = copy.images;
