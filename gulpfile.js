@@ -81,19 +81,19 @@ USWDS specific tasks
 const copy = {
   theme() {
     log(colorBlue, `Copying USWDS theme files to ${paths.dist.sass}`);
-    return src(`${paths.src.theme}/*/**`).pipe(dest(paths.dist.sass));
+    return src(`${paths.src.theme}/**/**`).pipe(dest(paths.dist.sass));
   },
   fonts() {
     log(colorBlue, `Copying USWDS fonts to ${paths.dist.fonts}`);
-    return src(`${paths.src.fonts}/*/**`).pipe(dest(paths.dist.fonts));
+    return src(`${paths.src.fonts}/**/**`).pipe(dest(paths.dist.fonts));
   },
   images() {
     log(colorBlue, `Copying USWDS images to ${paths.dist.img}`);
-    return src(`${paths.src.img}/*/**`).pipe(dest(paths.dist.img));
+    return src(`${paths.src.img}/**/**`).pipe(dest(paths.dist.img));
   },
   js() {
     log(colorBlue, `Copying USWDS JavaScript to ${paths.dist.js}`);
-    return src(`${paths.src.js}/*/**`).pipe(dest(paths.dist.js));
+    return src(`${paths.src.js}/**/**`).pipe(dest(paths.dist.js));
   },
 };
 
