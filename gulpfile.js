@@ -54,7 +54,7 @@ let settings = {
         fonts: "./assets/uswds/fonts",
         js: "./assets/uswds/js",
         css: "./assets/css",
-        jekyll: "./_site/assets/css",
+        jekyllCss: "./_site/assets/css",
       },
     },
   },
@@ -109,7 +109,7 @@ function handleError(error) {
 }
 
 function buildSass() {
-  const settings = {
+  const buildSettings = {
     plugins: [
       autoprefixer({
         cascade: false,
@@ -128,13 +128,13 @@ function buildSass() {
     src([`${paths.dist.sass}/*.scss`])
       .pipe(sourcemaps.init({ largeFile: true }))
       .pipe(
-        sass.sync({ includePaths: settings.includes })
+        sass.sync({ includePaths: buildSettings.includes })
           .on("error", handleError)
       )
       .pipe(replace(/\buswds @version\b/g, `based on uswds v${pkg}`))
-      .pipe(postcss(settings.plugins))
+      .pipe(postcss(buildSettings.plugins))
       .pipe(sourcemaps.write("."))
-      .pipe(gulpif(paths.dist.jekyll, dest(paths.dist.jekyll)))
+      .pipe(gulpif(paths.dist.jekyllCss, dest(paths.dist.jekyllCss)))
       .pipe(dest(paths.dist.css))
   );
 }
@@ -205,6 +205,11 @@ exports.compile = parallel(
   buildSass,
   this.compileIcons
 );
+exports.updateUswds = series(
+  this.copyAssets,
+  this.compile
+);
+
 exports.init = series(this.copyAll, this.compile);
 exports.watch = series(buildSass, watchSass);
 exports.default = this.watch;
