@@ -134,7 +134,6 @@ function buildSass() {
       .pipe(replace(/\buswds @version\b/g, `based on uswds v${pkg}`))
       .pipe(postcss(settings.plugins))
       .pipe(sourcemaps.write("."))
-      .pipe(gulpif(paths.dist.jekyll, dest(paths.dist.jekyll)))
       .pipe(dest(paths.dist.css))
   );
 }
