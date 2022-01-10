@@ -54,6 +54,12 @@ let settings = {
         css: "./assets/css",
       },
     },
+    browserslist: [
+      "> 2%",
+      "last 2 versions",
+      "IE 11",
+      "not dead"
+    ],
   },
   sprite: {
     width: 24,
@@ -112,6 +118,7 @@ function buildSass() {
       autoprefixer({
         cascade: false,
         grid: true,
+        browserslist: settings.compile.browserslist
       }),
       csso({ forceMediaMerge: false }),
     ],
