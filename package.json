@@ -1,7 +1,7 @@
 {
   "name": "@uswds/compile",
-  "version": "0.1.0",
-  "description": "A gulp-based compiler for USWDS Sass and JavaScript",
+  "version": "2.0.0-beta.1",
+  "description": "Foo A gulp-based compiler for USWDS Sass and JavaScript",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
