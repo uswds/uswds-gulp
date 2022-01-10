@@ -118,7 +118,7 @@ function buildSass() {
       autoprefixer({
         cascade: false,
         grid: true,
-        browserslist: settings.compile.browserslist
+        overrideBrowserslist: settings.compile.browserslist
       }),
       csso({ forceMediaMerge: false }),
     ],
