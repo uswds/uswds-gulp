@@ -71,7 +71,7 @@ Setting | Default | Description
 `paths.dist.img` | `"./assets/uswds/images"` | Project destination for images
 `paths.dist.fonts` | `"./assets/uswds/fonts"` | Project destination for fonts
 `paths.dist.js` | `"./assets/uswds/fonts"` | Project destination for compiled JavaScript
-`paths.dist.css` | `"./assets/uswds/fonts"` | Project destination for compiled CSS
+`paths.dist.css` | `"./assets/uswds/css"` | Project destination for compiled CSS
 
 ### Functions
 Export USWDS Compile functions in your project's `gulpfile.js` to use them in your project.
