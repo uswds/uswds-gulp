@@ -51,7 +51,7 @@ let settings = {
         img: "./assets/uswds/images",
         fonts: "./assets/uswds/fonts",
         js: "./assets/uswds/js",
-        css: "./assets/css",
+        css: "./assets/uswds/css",
       },
     },
     browserslist: [
