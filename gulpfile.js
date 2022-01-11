@@ -47,7 +47,7 @@ let settings = {
        * - don't use a trailing `/` for path
        */
       dist: {
-        sass: "./sass",
+        theme: "./sass",
         img: "./assets/uswds/images",
         fonts: "./assets/uswds/fonts",
         js: "./assets/uswds/js",
@@ -83,8 +83,8 @@ USWDS specific tasks
 */
 const copy = {
   theme() {
-    log(colorBlue, `Copying USWDS theme files to ${paths.dist.sass}`);
-    return src(`${paths.src.theme}/**/**`).pipe(dest(paths.dist.sass));
+    log(colorBlue, `Copying USWDS theme files to ${paths.dist.theme}`);
+    return src(`${paths.src.theme}/**/**`).pipe(dest(paths.dist.theme));
   },
   fonts() {
     log(colorBlue, `Copying USWDS fonts to ${paths.dist.fonts}`);
@@ -123,14 +123,14 @@ function buildSass() {
       csso({ forceMediaMerge: false }),
     ],
     includes: [
-      paths.dist.sass,
+      paths.dist.theme,
       paths.src.sass,
       `${paths.src.sass}/packages`
     ],
   };
 
   return (
-    src([`${paths.dist.sass}/*.scss`])
+    src([`${paths.dist.theme}/*.scss`])
       .pipe(sourcemaps.init({ largeFile: true }))
       .pipe(
         sass.sync({ includePaths: buildSettings.includes })
@@ -144,7 +144,7 @@ function buildSass() {
 }
 
 function watchSass() {
-  return watch(`${paths.dist.sass}/**/*.scss`, buildSass);
+  return watch(`${paths.dist.theme}/**/*.scss`, buildSass);
 };
 
 function buildSprite() {
