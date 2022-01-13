@@ -84,19 +84,19 @@ USWDS specific tasks
 const copy = {
   theme() {
     log(colorBlue, `Copying USWDS theme files to ${paths.dist.theme}`);
-    return src(`${paths.src.theme}/**/**`).pipe(dest(paths.dist.theme));
+    return src(`${paths.src.theme}/**/**`.replaceAll("//", "/")).pipe(dest(paths.dist.theme));
   },
   fonts() {
     log(colorBlue, `Copying USWDS fonts to ${paths.dist.fonts}`);
-    return src(`${paths.src.fonts}/**/**`).pipe(dest(paths.dist.fonts));
+    return src(`${paths.src.fonts}/**/**`.replaceAll("//", "/")).pipe(dest(paths.dist.fonts));
   },
   images() {
     log(colorBlue, `Copying USWDS images to ${paths.dist.img}`);
-    return src(`${paths.src.img}/**/**`).pipe(dest(paths.dist.img));
+    return src(`${paths.src.img}/**/**`.replaceAll("//", "/")).pipe(dest(paths.dist.img));
   },
   js() {
     log(colorBlue, `Copying USWDS JavaScript to ${paths.dist.js}`);
-    return src(`${paths.src.js}/**/**`).pipe(dest(paths.dist.js));
+    return src(`${paths.src.js}/**/**`.replaceAll("//", "/")).pipe(dest(paths.dist.js));
   },
 };
 
@@ -125,12 +125,12 @@ function buildSass() {
     includes: [
       paths.dist.theme,
       paths.src.sass,
-      `${paths.src.sass}/packages`
+      `${paths.src.sass}/packages`.replaceAll("//", "/")
     ],
   };
 
   return (
-    src([`${paths.dist.theme}/*.scss`])
+    src([`${paths.dist.theme}/*.scss`.replaceAll("//", "/")])
       .pipe(sourcemaps.init({ largeFile: true }))
       .pipe(
         sass.sync({ includePaths: buildSettings.includes })
@@ -144,7 +144,7 @@ function buildSass() {
 }
 
 function watchSass() {
-  return watch(`${paths.dist.theme}/**/*.scss`, buildSass);
+  return watch(`${paths.dist.theme}/**/*.scss`.replaceAll("//", "/"), buildSass);
 };
 
 function buildSprite() {
@@ -168,7 +168,7 @@ function buildSprite() {
     },
   };
 
-  return src(`${paths.dist.img}/usa-icons/**/*.svg`, {
+  return src(`${paths.dist.img}/usa-icons/**/*.svg`.replaceAll("//", "/"), {
     allowEmpty: true,
   })
     .pipe(svgSprite(config))
@@ -177,15 +177,15 @@ function buildSprite() {
 }
 
 function renameSprite() {
-  return src(`${paths.dist.img}/symbol/svg/sprite.symbol.svg`, {
+  return src(`${paths.dist.img}/symbol/svg/sprite.symbol.svg`.replaceAll("//", "/"), {
     allowEmpty: true,
   })
-    .pipe(rename(`${paths.dist.img}/sprite.svg`))
+    .pipe(rename(`${paths.dist.img}/sprite.svg`.replaceAll("//", "/")))
     .pipe(dest(`./`));
 }
 
 function cleanSprite() {
-  return del(`${paths.dist.img}/symbol`);
+  return del(`${paths.dist.img}/symbol`.replaceAll("//", "/"));
 }
 
 exports.settings = settings;
