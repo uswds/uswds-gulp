@@ -48,7 +48,7 @@ let settings = {
        */
       dist: {
         theme: "./sass",
-        img: "./assets/uswds/images",
+        img: "./assets/uswds/img",
         fonts: "./assets/uswds/fonts",
         js: "./assets/uswds/js",
         css: "./assets/uswds/css",
