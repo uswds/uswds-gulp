@@ -67,6 +67,7 @@ Setting | Default | Description
 `paths.src.fonts` | `"node_modules/uswds/dist/fonts"` | Source location of the USWDS fonts
 `paths.src.img` | `"node_modules/uswds/dist/img"` | Source location of the USWDS images
 `paths.src.js` | `"node_modules/uswds/dist/js"` | Source location of the USWDS compiled JavaScript files
+`paths.src.projectSass` | `"./sass"` | Source location of any exisiting project Sass files outside of `paths.dist.sass`. The `watch` script will watch this directory for changes.
 `paths.dist.sass` | `"./sass"` | Project destination for theme files (Sass entry point and settings)
 `paths.dist.img` | `"./assets/uswds/images"` | Project destination for images
 `paths.dist.fonts` | `"./assets/uswds/fonts"` | Project destination for fonts

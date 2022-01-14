@@ -40,6 +40,7 @@ let settings = {
         fonts: "node_modules/uswds/dist/fonts",
         img: "node_modules/uswds/dist/img",
         js: "node_modules/uswds/dist/js",
+        projectSass: "./sass",
       },
       /**
        * ? project paths
@@ -144,7 +145,11 @@ function buildSass() {
 }
 
 function watchSass() {
-  return watch(`${paths.dist.theme}/**/*.scss`.replaceAll("//", "/"), buildSass);
+  return watch(
+    [
+      `${paths.dist.theme}/**/*.scss`.replaceAll("//", "/"), 
+      `${paths.src.projectSass}/**/*.scss`.replaceAll("//", "/")
+    ], buildSass);
 };
 
 function buildSprite() {
