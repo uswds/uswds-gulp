@@ -34,18 +34,17 @@ let settings = {
   compile: {
     paths: {
       src: {
-        uswds: "node_modules/uswds/dist",
-        sass: "node_modules/uswds/dist/scss",
-        theme: "node_modules/uswds/dist/scss/theme",
-        fonts: "node_modules/uswds/dist/fonts",
-        img: "node_modules/uswds/dist/img",
-        js: "node_modules/uswds/dist/js",
+        uswds: "./node_modules/uswds/dist",
+        sass: "./node_modules/uswds/dist/scss",
+        theme: "./node_modules/uswds/dist/scss/theme",
+        fonts: "./node_modules/uswds/dist/fonts",
+        img: "./node_modules/uswds/dist/img",
+        js: "./node_modules/uswds/dist/js",
         projectSass: "./sass",
       },
       /**
        * ? project paths
        * - all paths are relative to the project root
-       * - don't use a trailing `/` for path
        */
       dist: {
         theme: "./sass",

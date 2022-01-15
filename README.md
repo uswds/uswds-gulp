@@ -61,12 +61,12 @@ Use path settings to customize where USWDS Compile looks for USWDS source and ou
 
 Setting | Default | Description
 --- | --- | ---
-`paths.src.uswds` | `"node_modules/uswds/dist"` | Source location of the `uswds` package
-`paths.src.sass` | `"node_modules/uswds/dist/scss"` | Source location of the USWDS Sass 
-`paths.src.theme` | `"node_modules/uswds/dist/scss/theme"` | Source location of the USWDS theme files (Sass entry point and starter settings files)
-`paths.src.fonts` | `"node_modules/uswds/dist/fonts"` | Source location of the USWDS fonts
-`paths.src.img` | `"node_modules/uswds/dist/img"` | Source location of the USWDS images
-`paths.src.js` | `"node_modules/uswds/dist/js"` | Source location of the USWDS compiled JavaScript files
+`paths.src.uswds` | `"./node_modules/uswds/dist"` | Source location of the `uswds` package
+`paths.src.sass` | `"./node_modules/uswds/dist/scss"` | Source location of the USWDS Sass 
+`paths.src.theme` | `"./node_modules/uswds/dist/scss/theme"` | Source location of the USWDS theme files (Sass entry point and starter settings files)
+`paths.src.fonts` | `"./node_modules/uswds/dist/fonts"` | Source location of the USWDS fonts
+`paths.src.img` | `"./node_modules/uswds/dist/img"` | Source location of the USWDS images
+`paths.src.js` | `"./node_modules/uswds/dist/js"` | Source location of the USWDS compiled JavaScript files
 `paths.src.projectSass` | `"./sass"` | Source location of any exisiting project Sass files outside of `paths.dist.sass`. The `watch` script will watch this directory for changes.
 `paths.dist.sass` | `"./sass"` | Project destination for theme files (Sass entry point and settings)
 `paths.dist.img` | `"./assets/uswds/images"` | Project destination for images
