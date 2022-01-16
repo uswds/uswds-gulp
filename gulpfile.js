@@ -17,7 +17,7 @@ const { src, dest, series, parallel, watch } = require("gulp");
 const pkg = require("../../uswds/package.json").version;
 const postcss = require("gulp-postcss");
 const replace = require("gulp-replace");
-const sass = require("gulp-sass")(require("sass-embedded"));
+const sass = require("gulp-sass")(require("sass"));
 const sourcemaps = require("gulp-sourcemaps");
 const del = require("del");
 const svgSprite = require("gulp-svg-sprite");
@@ -133,7 +133,7 @@ function buildSass() {
     src([`${paths.dist.theme}/*.scss`.replaceAll("//", "/")])
       .pipe(sourcemaps.init({ largeFile: true }))
       .pipe(
-        sass({ loadPaths: buildSettings.includes })
+        sass.sync({ includePaths: buildSettings.includes })
           .on("error", handleError)
       )
       .pipe(replace(/\buswds @version\b/g, `based on uswds v${pkg}`))
