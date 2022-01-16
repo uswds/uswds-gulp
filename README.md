@@ -71,7 +71,7 @@ Setting | Default | Description
 `paths.dist.sass` | `"./sass"` | Project destination for theme files (Sass entry point and settings)
 `paths.dist.img` | `"./assets/uswds/images"` | Project destination for images
 `paths.dist.fonts` | `"./assets/uswds/fonts"` | Project destination for fonts
-`paths.dist.js` | `"./assets/uswds/fonts"` | Project destination for compiled JavaScript
+`paths.dist.js` | `"./assets/uswds/js"` | Project destination for compiled JavaScript
 `paths.dist.css` | `"./assets/uswds/css"` | Project destination for compiled CSS
 
 ### Functions
@@ -84,14 +84,14 @@ Function | Description
 `compileSass` | Compile Sass into `paths.dist.css`
 `default` | `watch`
 `copyAll` | `copySetup` + `copyAssets`
-`copyAssets` | Copies all static assets: `copyJS` + `copyImages` + `copyFonts`
+`copyAssets` | Copies all static assets: `copyFonts` + `copyImages` + `copyJS`  
 `copyFonts` | Copy USWDS fonts to `paths.dist.fonts`
 `copyImages` | Copy USWDS images to `paths.dist.img`
 `copyJS` | Copy USWDS compiled JavaScript to `paths.dist.js`
 `copySetup` | Copy USWDS theme files (Sass entry point and settings files) from the `uswds` package to `paths.dist.sass`
 `init` | `copyAll` + `compile`
 `updateUswds` | `copyAssets` + `compile`
-`watch` | Compiles, then recompiles when there are changes in  `paths.dist.sass`
+`watch` | Compiles, then recompiles when there are changes to Sass files in `paths.dist.sass` and `paths.src.projectSass`
 
 
 ## Running the compile functions
