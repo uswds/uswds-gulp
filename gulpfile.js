@@ -133,7 +133,7 @@ function buildSass() {
     src([`${paths.dist.theme}/*.scss`.replaceAll("//", "/")])
       .pipe(sourcemaps.init({ largeFile: true }))
       .pipe(
-        sass.sync({ includePaths: buildSettings.includes })
+        sass({ includePaths: buildSettings.includes })
           .on("error", handleError)
       )
       .pipe(replace(/\buswds @version\b/g, `based on uswds v${pkg}`))
