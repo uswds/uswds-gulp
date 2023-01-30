@@ -1,6 +1,6 @@
 # Deprecated
 
-⚠️ **This project is no longer under active development. Please use [USWDS/Compile](https://www.npmjs.com/package/@uswds/compile) instead.**
+⚠️ **This project is no longer under active development. Please use [@USWDS/Compile](https://www.npmjs.com/package/@uswds/compile) instead.**
 
 ---
 
