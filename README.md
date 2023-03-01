@@ -1,3 +1,9 @@
+# Deprecated
+
+⚠️ **This project is no longer under active development. Please use [@USWDS/Compile](https://www.npmjs.com/package/@uswds/compile) instead.**
+
+---
+
 # USWDS Gulp pipeline for copying assets and compiling Sass
 
 A simple [Gulp 4.0](https://gulpjs.com/) workflow for transforming USWDS Sass into browser-readable CSS.
